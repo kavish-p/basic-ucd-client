@@ -40,30 +40,4 @@ def wait_until_status_succeeded(application, application_process, environment):
         time_slept = time_slept + ucd_polling_interval_seconds
     exit(1)
 
-# data = {
-#     "application": "JenkinsTest",
-#     "description": "Requesting deployment to OpenShift Test Env",
-#     "applicationProcess": "ApplicationProcess1",
-#     "environment": "TEST-ENVIRONMENT",
-#     "onlyChanged": "false"
-# }
-
-# json_data = json.dumps(data)
-
-# r = requests.put('https://192.168.0.220/cli/applicationProcessRequest/request', verify=False, auth=('user1', 'P@ssw0rd'), data = json_data)
-# print(r.text)
-
-
-# r = requests.get('https://192.168.0.220/cli/applicationProcessRequest/178591e5-29f3-5538-2848-35ff91ca618b', verify=False, auth=('user1', 'P@ssw0rd'))
-# json_data = json.loads(r.text)
-# print(json_data)
-# print(json_data['result'])
-
-
-# r = requests.get('https://192.168.0.220/cli/applicationProcessRequest/requestStatus?request=17859401-10b0-da1f-b61d-db33e93d88c4', verify=False, auth=('user1', 'P@ssw0rd'))
-# json_data = json.loads(r.text)
-# print(json_data)
-# print(json_data['result'])
-
-# {'status': 'CLOSED', 'result': 'SUCCEEDED', 'duration': 4388}
-# {'status': 'CLOSED', 'result': 'FAULTED', 'duration': 10363}
+wait_until_status_succeeded(application='JenkinsTest', application_process='ApplicationProcess1', environment='TEST-ENVIRONMENT')
