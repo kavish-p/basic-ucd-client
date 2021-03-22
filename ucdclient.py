@@ -1,6 +1,7 @@
 import requests
 import json
 import configparser
+import time
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -9,6 +10,7 @@ ucd_api_base_url = config['default']['ucd_api_base_url']
 ucd_username = config['default']['ucd_username']
 ucd_password = config['default']['ucd_password']
 ucd_max_wait_seconds = config['default']['ucd_max_wait_seconds']
+ucd_polling_interval_seconds = config['default']['ucd_polling_interval_seconds']
 
 def application_process_request(application, application_process, environment):
     data = {
@@ -34,7 +36,8 @@ def wait_until_status_succeeded(application, application_process, environment):
         status = check_application_process_request_status(requestID)
         if status == 'SUCCEEDED':
             exit(0)
-        
+        time.sleep(ucd_polling_interval_seconds)
+        time_slept = time_slept + ucd_polling_interval_seconds
     exit(1)
 
 # data = {
